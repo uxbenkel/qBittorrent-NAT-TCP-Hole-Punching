@@ -5,9 +5,19 @@ private_port=$4 # Natter: $3; NATMap: $4
 public_port=$2 # Natter: $5; NATMap: $2
 
 # qBittorrent.
-qb_web_port="8080"
-qb_username="admin"
-qb_password="adminadmin"
+qb_web_port='8080'
+qb_username='admin'
+qb_password='adminadmin'
+
+# wrap text info
+text="<b>natmap 打洞成功通知</b>
+
+qBittorrent 端口已更新为：$public_port"
+
+# bot parameter
+bot_api='bot_api'
+chat_id='chat_id'
+url="https://api.telegram.org/bot${bot_api}/sendMessage"
 
 echo "Update qBittorrent listen port to $public_port..."
 
@@ -25,3 +35,8 @@ fi
 iptables -t nat -I PREROUTING -p tcp --dport $private_port -j REDIRECT --to-port $public_port
 
 echo "Done."
+
+#发送消息
+curl -s -X POST ${url} -d chat_id=${chat_id} -d text="${text}" -d parse_mode=HTML >/dev/null 2>&1
+
+echo "Message has been sent."
