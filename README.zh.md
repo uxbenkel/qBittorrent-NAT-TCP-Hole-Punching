@@ -26,7 +26,7 @@
    + qb_username: 用户名
    + qb_password: 密码
 
-4. 以 NATMap 为例，运行 `sudo ./natmap -s stunserver.stunprotocol.org -h baidu.com -b 45678 -e ./update.sh` 即可。
+4. 以 NATMap 为例，运行 `sudo nohup ./natmap -s stunserver.stunprotocol.org -h baidu.com -b 45678 -e ./update.sh &` 即可。
 
    其中，`stunserver.stunprotocol.org` 为 STUN 服务器地址，`baidu.com` 为公网 HTTP 服务器地址，用于维持 NAT 映射关系，一般不用修改。`45678` 为任意本地可用端口。
 
